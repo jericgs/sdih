@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
  * Created by Erick on 07/07/2015.
  */
-public class FeedBack extends ActionBarActivity {
+public class FeedBack extends ActionBarActivity implements View.OnClickListener{
 
     private EditText conteudo;
+    private Button btCancelar, btEnviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class FeedBack extends ActionBarActivity {
         actionBarSetup();
 
         conteudo = (EditText)findViewById(R.id.editTextConteudo);
+        btCancelar = (Button)findViewById(R.id.buttonCancelar);
+        btEnviar = (Button)findViewById(R.id.buttonEnviar);
 
     }
 
@@ -34,6 +39,18 @@ public class FeedBack extends ActionBarActivity {
             ab.setTitle(s);
 
 
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if(v.getId() == R.id.buttonEnviar){
+
+        }
+
+        if(v.getId() == R.id.buttonCancelar){
+            finish();
         }
     }
 }
