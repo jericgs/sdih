@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+        android:paddingRight="@dimen/tp_activity_horizontal_margin"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:background="@drawable/customizado_edittext_busca"
+            android:layout_margin="@dimen/tp_margem_botoes"
+            android:inputType="textPersonName"
+            android:hint="@string/nome"
+            android:ems="10"
+            android:id="@+id/nomeBuscado"
+            android:layout_weight="0.94" />
+
+        <ImageButton
+            android:layout_weight="0"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customizado_button_preto"
+            android:layout_margin="@dimen/tp_margem_botoes"
+
+            android:src="@drawable/abc_ic_search_api_mtrl_alpha"
+            android:id="@+id/botaoBuscar" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelVaagasLocalizacao"
+        android:background="@color/preto_000000"
+        android:textColor="@color/branco_ffffff"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:paddingLeft="@dimen/ts_activity_horizontal_margin"
+        android:paddingRight="@dimen/ts_activity_horizontal_margin"
+        android:paddingTop="@dimen/ts_activity_vertical_margin"
+        android:paddingBottom="@dimen/ts_activity_vertical_margin"
+        android:id="@+id/textView1" />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/customizado_list_view"
+        android:id="@+id/listView" />
+
+</LinearLayout>

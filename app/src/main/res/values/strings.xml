@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SDIH</string>
+    <string name="hello_world">Hello world!</string>
+
+    //tela menu
+    <string name="item1_desenvolvedores">Desenvolvedores</string>
+    <string name="item2_feedback">FeedBack</string>
+    <string name="item3_Sobre">Sobre</string>
+
+    //tela_login
+    <string name="caixaUsuario">Usuário</string>
+    <string name="caixaSenha">Senha</string>
+    <string name="buttonEnter">Enter</string>
+
+    //tela buscar
+    <string name="labelVaagasLocalizacao">Vagas Localizadas</string>
+    <string name="nome">Ex.: Rua Epistacio Pessoa</string>
+
+    //tela add vaga TextViews
+    <string name="labelCadastro">Cadastro</string>
+    <string name="labelComplemento">Complemento:</string>
+    <string name="labelLogradouro">Logradouro:</string>
+    <string name="labelBairro">Bairro:</string>
+    <string name="labelCidade">Cidade:</string>
+    <string name="labelEstado">Estado:</string>
+    <string name="labelPais">País:</string>
+    <string name="labelLatitude">Latitude</string>
+    <string name="labelLongitude">Longitude</string>
+
+    //tela add vaga Botão
+    <string name="btCadastra">Cadastra</string>
+
+    //tela add vaga Hints
+    <string name="HintComplemento">Ex.: Residencial, Condomínio, Loja</string>
+    <string name="HintsLogradouro">Ex.: Av Juvenal Lamartine</string>
+    <string name="HintsBairro">Ex.: Centro</string>
+    <string name="HintsCidade">Ex.: Portalegre</string>
+    <string name="HintsEstado">Ex.: Paraíba</string>
+    <string name="HintsPais">Ex.: Bulgária</string>
+
+    //tela feedback TextViews
+    <string name="labelFeedback">FeedBack</string>
+    <string name="labelEmail">E-mail:</string>
+    <string name="labelConteudo">Conteúdo:</string>
+    <string name="emailParaEnvio">jerick.gs@gmail.com</string>
+
+    //tela feedback Butões
+    <string name="btCancelar">Cancelar</string>
+    <string name="btEnviar">Enviar</string>
+
+</resources>

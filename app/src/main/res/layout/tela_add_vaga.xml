@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/amarelo_FCE300">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelCadastro"
+        android:background="@color/preto_000000"
+        android:textColor="@color/branco_ffffff"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+        android:paddingRight="@dimen/tp_activity_horizontal_margin"
+        android:paddingTop="@dimen/tp_activity_vertical_margin"
+        android:paddingBottom="@dimen/tp_activity_vertical_margin"
+        android:id="@+id/textViewCadastro" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingTop="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/labelComplemento"
+                android:id="@+id/textViewComplemento" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:hint="@string/HintComplemento"
+                android:textColor="@color/branco_ffffff"
+                android:textColorHint="@color/cinza_E0E0E0"
+                android:ems="11"
+                android:maxLength="50"
+                android:background="@drawable/customizado_edittext"
+                android:layout_margin="@dimen/tc_margem"
+                android:id="@+id/editTextComplemento"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:enabled="true"
+                android:nextFocusRight="@+id/editTextLogradouro"
+                android:layout_above="@+id/editTextLogradouro"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingTop="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/labelLogradouro"
+                android:id="@+id/textViewLogradouro" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/HintsLogradouro"
+                android:textColor="@color/branco_ffffff"
+                android:textColorHint="@color/cinza_E0E0E0"
+                android:singleLine="true"
+                android:ems="11"
+                android:maxLength="50"
+                android:background="@drawable/customizado_edittext"
+                android:layout_margin="@dimen/tc_margem"
+                android:id="@+id/editTextLogradouro"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:enabled="true"
+                android:nextFocusRight="@+id/editTextBairro"
+                android:layout_above="@+id/editTextBairro"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingTop="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/labelBairro"
+                android:id="@+id/textViewBairro" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/HintsBairro"
+                android:textColor="@color/branco_ffffff"
+                android:textColorHint="@color/cinza_E0E0E0"
+                android:singleLine="true"
+                android:ems="11"
+                android:maxLength="50"
+                android:background="@drawable/customizado_edittext"
+                android:layout_margin="@dimen/tc_margem"
+                android:id="@+id/editTextBairro"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:enabled="true"
+                android:nextFocusRight="@+id/editTextCidade"
+                android:layout_above="@+id/editTextCidade"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingTop="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/labelCidade"
+                android:id="@+id/textViewCidade" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/HintsCidade"
+                android:textColor="@color/branco_ffffff"
+                android:textColorHint="@color/cinza_E0E0E0"
+                android:singleLine="true"
+                android:ems="11"
+                android:maxLength="50"
+                android:background="@drawable/customizado_edittext"
+                android:layout_margin="@dimen/tc_margem"
+                android:id="@+id/editTextCidade"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:enabled="true"
+                android:nextFocusRight="@+id/editTextEstado"
+                android:layout_above="@+id/editTextEstado"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingTop="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/labelEstado"
+                android:id="@+id/textViewEstado" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/HintsEstado"
+                android:textColor="@color/branco_ffffff"
+                android:textColorHint="@color/cinza_E0E0E0"
+                android:singleLine="true"
+                android:ems="11"
+                android:maxLength="50"
+                android:background="@drawable/customizado_edittext"
+                android:layout_margin="@dimen/tc_margem"
+                android:id="@+id/editTextEstado"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:enabled="true"
+                android:nextFocusRight="@+id/editTextPais"
+                android:layout_above="@+id/editTextPais"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingTop="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/labelPais"
+                android:id="@+id/textViewPais" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/HintsPais"
+                android:textColor="@color/branco_ffffff"
+                android:textColorHint="@color/cinza_E0E0E0"
+                android:singleLine="true"
+                android:ems="11"
+                android:maxLength="50"
+                android:background="@drawable/customizado_edittext"
+                android:layout_margin="@dimen/tc_margem"
+                android:id="@+id/editTextPais"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:enabled="true"
+                android:nextFocusRight="@+id/buttonCadastro"
+                android:layout_above="@+id/buttonCadastro"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/preto_000000"
+                    android:textSize="15dp"
+                    android:paddingLeft="@dimen/textView_margem"
+                    android:paddingTop="@dimen/textView_margem"
+                    android:textStyle="bold"
+                    android:text="@string/labelLatitude"
+                    android:id="@+id/textViewLatitude" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/preto_000000"
+                    android:textSize="15dp"
+                    android:paddingLeft="@dimen/textView_margem"
+                    android:paddingTop="@dimen/textView_margem"
+                    android:textStyle="bold"
+                    android:text="@string/labelLongitude"
+                    android:id="@+id/textViewLongitude" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/branco_ffffff"
+                    android:singleLine="true"
+                    android:ems="11"
+                    android:maxLength="50"
+                    android:background="@drawable/customizado_edittext"
+                    android:layout_margin="@dimen/tc_margem"
+                    android:id="@+id/editTextLongitude"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:enabled="false"
+                    android:nextFocusRight="@+id/buttonCadastro"
+                    android:layout_above="@+id/buttonCadastro"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/branco_ffffff"
+                    android:singleLine="true"
+                    android:ems="11"
+                    android:maxLength="50"
+                    android:background="@drawable/customizado_edittext"
+                    android:layout_margin="@dimen/tc_margem"
+                    android:id="@+id/editTextLatitude"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:enabled="false"
+                    android:nextFocusRight="@+id/buttonCadastro"
+                    android:layout_above="@+id/buttonCadastro"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customizado_button_preto"
+            android:gravity="center"
+            android:text="@string/btCadastra"
+            android:id="@+id/buttonCadastro"
+            android:textColor="@color/branco_ffffff"
+            android:layout_marginBottom="80dp"
+            android:layout_margin="@dimen/tc_margem"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/editText2"
+            android:layout_alignStart="@+id/editText2"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2" />
+    </LinearLayout>
+
+</LinearLayout>
