@@ -59,6 +59,7 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
                     try {
                         Thread.sleep(5900);
                         pd.dismiss();
+                        finish();
                         startActivity(telaMenu);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

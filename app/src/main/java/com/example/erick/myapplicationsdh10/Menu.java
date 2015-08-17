@@ -1,6 +1,7 @@
 package com.example.erick.myapplicationsdh10;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -18,6 +20,7 @@ import android.widget.ImageButton;
 public class Menu extends ActionBarActivity implements View.OnClickListener{
 
     private ImageButton imagemBt1, imagemBt2, imagemBt3, imagemBt4;
+    private AlertDialog alerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,6 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
         imagemBt4 = (ImageButton)findViewById(R.id.imageButton4);
         imagemBt4.setOnClickListener(this);
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -52,6 +53,29 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         }
     }
 
+    @Override
+    public void onBackPressed(){
+
+        int layout = R.layout.tela_alerta_voltar;
+        int idButtonSim = R.id.buttonSim;
+        int idButtonNao = R.id.buttonNao;
+        alertaDialogo(layout, idButtonSim, idButtonNao);
+        Log.i("onBackPressed()", "Passou");
+
+    }
+
+    public void alertaDialogo(int layout, int idButtonSim, int idButtonNao){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(layout, null);
+        view.findViewById(idButtonSim).setOnClickListener(this);
+        view.findViewById(idButtonNao).setOnClickListener(this);
+        builder.setCustomTitle(view);
+        alerta = builder.create();
+        alerta.setCancelable(false);
+        alerta.setCanceledOnTouchOutside(false);
+        alerta.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
@@ -84,6 +108,11 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
             return true;
         }
 
+        if(id == R.id.item4_sair){
+            Intent telaLogin = new Intent(this, Login.class);
+            startActivity(telaLogin);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -108,6 +137,15 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
             Intent telaBuscarVaga = new Intent(this, BucarVaga.class);
             startActivity(telaBuscarVaga);
+        }
+
+        if(v.getId() == R.id.buttonSim){
+            finish();
+            alerta.dismiss();
+        }
+
+        if(v.getId() == R.id.buttonNao){
+            alerta.dismiss();
         }
     }
 }

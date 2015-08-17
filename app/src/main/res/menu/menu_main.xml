@@ -29,6 +29,12 @@
                 android:orderInCategory="100"
                 app:showAsAction="never" />
 
+            <item android:id="@+id/item4_sair"
+                android:title="@string/item4_Sobre"
+                android:icon="@drawable/ic_menu_sair"
+                android:orderInCategory="100"
+                app:showAsAction="never" />
+
         </menu>
 
     </item>

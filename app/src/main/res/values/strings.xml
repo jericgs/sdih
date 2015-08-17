@@ -8,11 +8,12 @@
     <string name="item1_desenvolvedores">Desenvolvedores</string>
     <string name="item2_feedback">FeedBack</string>
     <string name="item3_Sobre">Sobre</string>
+    <string name="item4_Sobre">Sair</string>
 
     //tela_login
     <string name="caixaUsuario">Usuário</string>
     <string name="caixaSenha">Senha</string>
-    <string name="buttonEnter">Enter</string>
+    <string name="buttonEnter">Entra</string>
 
     //tela buscar
     <string name="labelVaagasLocalizacao">Vagas Localizadas</string>
@@ -49,5 +50,9 @@
     //tela feedback Butões
     <string name="btCancelar">Cancelar</string>
     <string name="btEnviar">Enviar</string>
+
+    //tela alerta
+    <string name="btSim">Sim</string>
+    <string name="btNao">Não</string>
 
 </resources>
