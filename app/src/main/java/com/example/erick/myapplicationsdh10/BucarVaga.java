@@ -28,8 +28,6 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
         btBuscar = (ImageButton)findViewById(R.id.botaoBuscar);
         btBuscar.setOnClickListener(this);
 
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

@@ -5,5 +5,8 @@
     <color name="branco_ffffff">#ffffff</color>
     <color name="amarelo_FFEE75">#FFEE75</color>
     <color name="cinza_E0E0E0">#E0E0E0</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+
 
 </resources>

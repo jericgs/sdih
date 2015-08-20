@@ -13,6 +13,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+//OBS: Caracteres das caixas de texto
+
 
 /**
  * Created by Erick on 21/06/2015.
@@ -21,6 +26,8 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
     private ImageButton imagemBt1, imagemBt2, imagemBt3, imagemBt4;
     private AlertDialog alerta;
+    public static final int REQUEST_CODE = 0;
+    private String txResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +128,8 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
         if(v.getId() == R.id.imageButton1){
 
+            Intent telaScanner = new Intent(this, com.google.zxing.client.android.CaptureActivity.class);
+            startActivityForResult(telaScanner, REQUEST_CODE);
         }
 
         if(v.getId() == R.id.imageButton2){
@@ -146,6 +155,16 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
         if(v.getId() == R.id.buttonNao){
             alerta.dismiss();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            Toast.makeText(this, "RESULTADO: "+data.getStringExtra("SCAN_RESULT")+" ("+data.getStringExtra("SCAN_FORMAT")+")", Toast.LENGTH_LONG).show();
+
+            Intent telaRetornoQrcode = new Intent(this, RetornoQrCode.class);
+            startActivity(telaRetornoQrcode);
         }
     }
 }

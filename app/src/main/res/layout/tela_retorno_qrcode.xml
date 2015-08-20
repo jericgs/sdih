@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/amarelo_FCE300">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textViewInformacaoCondutor"
+                android:background="@color/preto_000000"
+                android:textColor="@color/branco_ffffff"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:paddingTop="@dimen/tp_activity_horizontal_margin"
+                android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+                android:paddingRight="@dimen/tp_activity_horizontal_margin"
+                android:paddingBottom="@dimen/tp_activity_vertical_margin"
+                android:id="@+id/textViewCondutor" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/preto_000000"
+                    android:textSize="15dp"
+                    android:paddingLeft="@dimen/textView_margem"
+                    android:paddingTop="@dimen/textView_margem"
+                    android:textStyle="bold"
+                    android:text="@string/nomeCondutor"
+                    android:id="@+id/textViewNome" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/branco_ffffff"
+                    android:singleLine="true"
+                    android:ems="11"
+                    android:maxLength="50"
+                    android:background="@drawable/customizado_edittext"
+                    android:layout_margin="@dimen/tc_margem"
+                    android:id="@+id/editTextNome"
+                    android:enabled="false"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/dataNascimento"
+                        android:id="@+id/textViewDataNascimento" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/sexo"
+                        android:id="@+id/textViewSexo" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextDataNascimento"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextSexo"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/cnh"
+                        android:id="@+id/textViewCnh" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/cpf"
+                        android:id="@+id/textViewCpf" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextCnh"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextCpf"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/preto_000000"
+                    android:textSize="15dp"
+                    android:paddingLeft="@dimen/textView_margem"
+                    android:paddingTop="@dimen/textView_margem"
+                    android:textStyle="bold"
+                    android:text="@string/labelComplemento"
+                    android:id="@+id/textViewComplemento" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/branco_ffffff"
+                    android:singleLine="true"
+                    android:ems="11"
+                    android:maxLength="50"
+                    android:background="@drawable/customizado_edittext"
+                    android:layout_margin="@dimen/tc_margem"
+                    android:id="@+id/editTextTextComplemento"
+                    android:enabled="false"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/labelBairro"
+                        android:id="@+id/textViewBairro" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/labelCidade"
+                        android:id="@+id/textViewCidade" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextBairro"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextCidade"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/labelEstado"
+                        android:id="@+id/textViewEstado" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/labelPais"
+                        android:id="@+id/textViewPais" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/telCel"
+                        android:id="@+id/textViewTelCel" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextEstado"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextPais"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextTelCel"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textViewInformacaoVeiculo"
+                android:background="@color/preto_000000"
+                android:textColor="@color/branco_ffffff"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:paddingTop="@dimen/tp_activity_horizontal_margin"
+                android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+                android:paddingRight="@dimen/tp_activity_horizontal_margin"
+                android:paddingBottom="@dimen/tp_activity_vertical_margin"
+                android:id="@+id/textViewVeiculo" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/preto_000000"
+                    android:textSize="15dp"
+                    android:paddingLeft="@dimen/textView_margem"
+                    android:paddingTop="@dimen/textView_margem"
+                    android:textStyle="bold"
+                    android:text="@string/modelo"
+                    android:id="@+id/textViewModelo" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/branco_ffffff"
+                    android:singleLine="true"
+                    android:ems="11"
+                    android:maxLength="50"
+                    android:background="@drawable/customizado_edittext"
+                    android:layout_margin="@dimen/tc_margem"
+                    android:id="@+id/editTextModelo"
+                    android:enabled="false"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/marca"
+                        android:id="@+id/textViewMarca" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/tipo"
+                        android:id="@+id/textViewTipo" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/cor"
+                        android:id="@+id/textViewCor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextMarca"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextTipo"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextCor"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/renavam"
+                        android:id="@+id/textViewRenavam" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/placa"
+                        android:id="@+id/textViewPlaca" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextRenavam"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="50"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextPlaca"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>
