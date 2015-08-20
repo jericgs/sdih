@@ -55,7 +55,6 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
                 @Override
                 public void run() {
 
-
                     try {
                         Thread.sleep(5900);
                         pd.dismiss();

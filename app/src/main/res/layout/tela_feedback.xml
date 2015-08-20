@@ -77,7 +77,7 @@
                 android:ems="11"
                 android:background="@drawable/customizado_edittext"
                 android:layout_margin="@dimen/tc_margem"
-                android:id="@+id/editTextLogradouro"
+                android:id="@+id/editTextConteudo"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:enabled="true"

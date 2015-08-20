@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +27,9 @@ public class FeedBack extends ActionBarActivity implements View.OnClickListener{
 
         conteudo = (EditText)findViewById(R.id.editTextConteudo);
         btCancelar = (Button)findViewById(R.id.buttonCancelar);
+        btCancelar.setOnClickListener(this);
         btEnviar = (Button)findViewById(R.id.buttonEnviar);
+        btEnviar.setOnClickListener(this);
 
     }
 
@@ -37,8 +40,6 @@ public class FeedBack extends ActionBarActivity implements View.OnClickListener{
             s.setSpan(new TypefaceSpan(this, "Aero.ttf"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             android.support.v7.app.ActionBar ab = getSupportActionBar();
             ab.setTitle(s);
-
-
         }
     }
 
@@ -47,6 +48,25 @@ public class FeedBack extends ActionBarActivity implements View.OnClickListener{
 
         if(v.getId() == R.id.buttonEnviar){
 
+            if(v.getId() == R.id.buttonEnviar){
+
+                Log.i("Informação", "retorno: " + verificaNet.verificaConexao( this.getApplicationContext() ));
+                if(  verificaNet.verificaConexao( this.getApplicationContext() )  ) {
+
+                    try {
+                        GMailSender mail = new GMailSender("sdihdevfive@gmail.com", "sleepsdih@@");
+                        mail.sendMail("SDIH - FeedBack", conteudo.getText().toString(), "sdihdevfive@gmail.com", "devfive@googlegroups.com");
+                        Log.i("Informação", "Try");
+                        ToastManager.show(this, "Enviado com sucesso.", ToastManager.CONFIRMACOES);
+                        finish();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    ToastManager.show(this, "Verifique sua Conexão.", ToastManager.INFORMACOES);
+                    finish();
+                }
+            }
         }
 
         if(v.getId() == R.id.buttonCancelar){

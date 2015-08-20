@@ -13,10 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
-
-//OBS: Caracteres das caixas de texto
 
 
 /**
@@ -27,7 +24,6 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
     private ImageButton imagemBt1, imagemBt2, imagemBt3, imagemBt4;
     private AlertDialog alerta;
     public static final int REQUEST_CODE = 0;
-    private String txResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +51,6 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
             s.setSpan(new TypefaceSpan(this, "Aero.ttf"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             android.support.v7.app.ActionBar ab = getSupportActionBar();
             ab.setTitle(s);
-
-
         }
     }
 
@@ -68,7 +62,6 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         int idButtonNao = R.id.buttonNao;
         alertaDialogo(layout, idButtonSim, idButtonNao);
         Log.i("onBackPressed()", "Passou");
-
     }
 
     public void alertaDialogo(int layout, int idButtonSim, int idButtonNao){
