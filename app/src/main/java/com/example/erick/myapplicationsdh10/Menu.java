@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-
 /**
  * Created by Erick on 21/06/2015.
  */

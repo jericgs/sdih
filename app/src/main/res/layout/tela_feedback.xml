@@ -24,7 +24,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -43,7 +43,7 @@
                 android:id="@+id/textViewEmail" />
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/branco_ffffff"
                 android:text="@string/emailParaEnvio"
@@ -53,8 +53,7 @@
                 android:background="@drawable/customizado_edittext"
                 android:layout_margin="@dimen/tc_margem"
                 android:id="@+id/editTextComplemento"
-                android:enabled="false"
-                android:layout_above="@+id/editTextLogradouro"/>
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -69,33 +68,30 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:layout_weight="1"
+                android:layout_height="fill_parent"
                 android:textColor="@color/branco_ffffff"
                 android:textColorHint="@color/cinza_E0E0E0"
+                android:gravity="left"
                 android:ems="11"
                 android:background="@drawable/customizado_edittext"
                 android:layout_margin="@dimen/tc_margem"
                 android:id="@+id/editTextConteudo"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:enabled="true"
-                android:layout_above="@+id/editTextConteudo"
                 android:textIsSelectable="false"
+                android:enabled="true"
                 android:maxHeight="0dp"
                 android:maxLines="27"
                 android:maxLength="1500"
                 android:scrollbars = "vertical"
                 android:autoText="false"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="true" />
 
         </LinearLayout>
 
-
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -105,6 +101,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
+            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -144,6 +141,7 @@
 
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
