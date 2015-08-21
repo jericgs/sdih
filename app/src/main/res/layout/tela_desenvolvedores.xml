@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/amarelo_FCE300">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_Desenvolvedores"
+        android:background="@color/preto_000000"
+        android:textColor="@color/branco_ffffff"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+        android:paddingRight="@dimen/tp_activity_horizontal_margin"
+        android:paddingTop="@dimen/tp_activity_vertical_margin"
+        android:paddingBottom="@dimen/tp_activity_vertical_margin"
+        android:id="@+id/textViewFeedBack" />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+        android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+        android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+        android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TableLayout
+            android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+            android:paddingRight="@dimen/tp_activity_horizontal_margin"
+            android:paddingTop="@dimen/tp_activity_vertical_margin"
+            android:paddingBottom="@dimen/tp_activity_vertical_margin"
+
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:stretchColumns="*"
+            android:layout_weight="0.5">
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+                android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customizado_button_preto"
+                android:src="@drawable/ic_erico"
+                android:id="@+id/imageButtonErico" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingBottom="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/label_Erico"
+                android:id="@+id/textViewErico" />
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+                android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customizado_button_preto"
+                android:src="@drawable/ic_erico"
+                android:id="@+id/imageButtonFelipe" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingBottom="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/label_Felipe"
+                android:id="@+id/textViewFelipe" />
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+                android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customizado_button_preto"
+                android:src="@drawable/ic_erico"
+                android:id="@+id/imageButtonRaissa" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingBottom="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/label_Raissa"
+                android:id="@+id/textViewRaissa" />
+
+        </TableLayout>
+
+        <TableLayout
+            android:paddingLeft="@dimen/tp_activity_horizontal_margin"
+            android:paddingRight="@dimen/tp_activity_horizontal_margin"
+            android:paddingTop="@dimen/tp_activity_vertical_margin"
+            android:paddingBottom="@dimen/tp_activity_vertical_margin"
+
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:stretchColumns="*"
+            android:layout_weight="0.5">
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+                android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customizado_button_preto"
+                android:src="@drawable/ic_erico"
+                android:id="@+id/imageButtonDaniel" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingBottom="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/label_Daniel"
+                android:id="@+id/textViewDaniel" />
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+                android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customizado_button_preto"
+                android:src="@drawable/ic_erico"
+                android:id="@+id/imageButtonGeo" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingBottom="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/label_Geo"
+                android:id="@+id/textViewGeo" />
+
+            <ImageButton
+                android:layout_marginLeft="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginRight="@dimen/tp_activity_horizontal_margin"
+                android:layout_marginTop="@dimen/tp_activity_vertical_margin"
+                android:layout_marginBottom="@dimen/tp_activity_vertical_margin"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customizado_button_preto"
+                android:src="@drawable/ic_erico"
+                android:id="@+id/imageButtonRamon" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/preto_000000"
+                android:textSize="15dp"
+                android:paddingLeft="@dimen/textView_margem"
+                android:paddingBottom="@dimen/textView_margem"
+                android:textStyle="bold"
+                android:text="@string/label_Ramon"
+                android:id="@+id/textViewRamon" />
+
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

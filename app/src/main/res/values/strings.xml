@@ -77,6 +77,15 @@
     <string name="labelConteudo">Conteúdo:</string>
     <string name="emailParaEnvio">sdihdevfive@gmail.com</string>
 
+    //tela desenvolvedores
+    <string name="label_Desenvolvedores">Desenvolvedores</string>
+    <string name="label_Erico">Erico Gomes</string>
+    <string name="label_Daniel">Daniel Vieira</string>
+    <string name="label_Felipe">Felipe Tadeu</string>
+    <string name="label_Geo">Geo Câmera</string>
+    <string name="label_Raissa">Raissa Sampaio</string>
+    <string name="label_Ramon">Ramon Sarmento</string>
+
     //tela feedback Butões
     <string name="btCancelar">Cancelar</string>
     <string name="btEnviar">Enviar</string>
