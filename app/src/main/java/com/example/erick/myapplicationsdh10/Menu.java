@@ -92,6 +92,8 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.item1_desenvolvedores) {
+            Intent telaDesenvolvedores = new Intent(this, Desenvolvedores.class);
+            startActivity(telaDesenvolvedores);
             return true;
         }
 

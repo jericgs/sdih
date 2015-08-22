@@ -1,12 +1,14 @@
 package com.example.erick.myapplicationsdh10;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.widget.ImageButton;
 
 /**
@@ -34,8 +36,11 @@ public class Desenvolvedores extends ActionBarActivity implements View.OnClickLi
         imagemBtGeo = (ImageButton)findViewById(R.id.imageButtonGeo);
         imagemBtGeo.setOnClickListener(this);
 
-        imagemBtRaissa = (ImageButton)findViewById(R.id.imageButtonRamon);
+        imagemBtRaissa = (ImageButton)findViewById(R.id.imageButtonRaissa);
         imagemBtRaissa.setOnClickListener(this);
+
+        imagemBtRamon = (ImageButton)findViewById(R.id.imageButtonRamon);
+        imagemBtRamon.setOnClickListener(this);
 
     }
 
@@ -53,26 +58,49 @@ public class Desenvolvedores extends ActionBarActivity implements View.OnClickLi
     public void onClick(View v) {
 
         if(v.getId() == R.id.imageButtonErico){
+            Intent telaWebView = new Intent(this, WebViewDesenvolvedor.class);
+            telaWebView.putExtra("Chave", "Erico");
+            startActivity(telaWebView);
 
         }
 
         if(v.getId() == R.id.imageButtonDaniel){
 
+            Intent telaWebView = new Intent(this, WebViewDesenvolvedor.class);
+            telaWebView.putExtra("Chave", "Daniel");
+            startActivity(telaWebView);
+
         }
 
         if(v.getId() == R.id.imageButtonFelipe){
+
+            Intent telaWebView = new Intent(this, WebViewDesenvolvedor.class);
+            telaWebView.putExtra("Chave", "Felipe");
+            startActivity(telaWebView);
 
         }
 
         if(v.getId() == R.id.imageButtonGeo){
 
+            Intent telaWebView = new Intent(this, WebViewDesenvolvedor.class);
+            telaWebView.putExtra("Chave", "Geo");
+            startActivity(telaWebView);
+
         }
 
         if(v.getId() == R.id.imageButtonRaissa){
 
+            Intent telaWebView = new Intent(this, WebViewDesenvolvedor.class);
+            telaWebView.putExtra("Chave", "Raissa");
+            startActivity(telaWebView);
+
         }
 
         if(v.getId() == R.id.imageButtonRamon){
+
+            Intent telaWebView = new Intent(this, WebViewDesenvolvedor.class);
+            telaWebView.putExtra("Chave", "Ramon");
+            startActivity(telaWebView);
 
         }
     }

@@ -75,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customizado_button_preto"
-                android:src="@drawable/ic_erico"
+                android:src="@drawable/ic_felipe"
                 android:id="@+id/imageButtonFelipe" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customizado_button_preto"
-                android:src="@drawable/ic_erico"
+                android:src="@drawable/ic_raissa"
                 android:id="@+id/imageButtonRaissa" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customizado_button_preto"
-                android:src="@drawable/ic_erico"
+                android:src="@drawable/ic_daniel"
                 android:id="@+id/imageButtonDaniel" />
 
             <TextView
@@ -160,7 +160,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customizado_button_preto"
-                android:src="@drawable/ic_erico"
+                android:src="@drawable/ic_geo"
                 android:id="@+id/imageButtonGeo" />
 
             <TextView
@@ -184,7 +184,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customizado_button_preto"
-                android:src="@drawable/ic_erico"
+                android:src="@drawable/ic_ramon"
                 android:id="@+id/imageButtonRamon" />
 
             <TextView
