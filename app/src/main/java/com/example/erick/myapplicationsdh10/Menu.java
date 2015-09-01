@@ -139,7 +139,7 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
         if(v.getId() == R.id.imageButton2){
 
-            Intent telaAdicionarVaga = new Intent(this, AdicionarVaga.class);
+            Intent telaAdicionarVaga = new Intent(this, AdicionarVagaPeloGPS.class);
             startActivity(telaAdicionarVaga);
         }
 

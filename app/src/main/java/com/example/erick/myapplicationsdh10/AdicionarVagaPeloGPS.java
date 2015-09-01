@@ -50,12 +50,14 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_add_vaga);
         actionBarSetup();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled (true);
 
         context = getApplicationContext();
         locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
         if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             Log.i("Dentro do","IF");
-            Toast.makeText(this, "O SDIH precisa acessar seu local. Ative o acesso à localização.", Toast.LENGTH_LONG).show();
+            ToastManager.show(this, "O SDIH precisa acessar seu local. Ative o acesso à localização.", ToastManager.INFORMACOES);
             startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 0);
             finish();
         }else{
@@ -111,11 +113,11 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
                     geoLocalizacao.add(addressList.get(0).getAdminArea());
                     geoLocalizacao.add(addressList.get(0).getCountryCode());
                 } else{
-                    Toast.makeText(this,"Não é possível adicionar uma vaga aqui",Toast.LENGTH_LONG).show();
+                    ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
                     finish();
                 }
             } else{
-                Toast.makeText(this,"Não é possível adicionar uma vaga aqui",Toast.LENGTH_LONG).show();
+                ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
                 finish();
             }
         } catch (IOException e) {
@@ -178,3 +180,10 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
     }
 
 }
+
+
+
+
+
+
+

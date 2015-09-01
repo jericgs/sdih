@@ -74,41 +74,4 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
 
     }
 
-    /*public ArrayList<FormatoEndereco> buscarContatoPorVoz() throws InterruptedException {
-
-        ArrayList<ContatoBuscadoFormato> telefone = new ArrayList<>();
-        String palavra = null, palavraComtoUpperCase = null;
-        String nome = null, nomeComReplace = null;
-        int i = 0;
-
-        for (i = 0; i < opPalavras.size(); i++) {
-            for (int j = 0; j < ListaContatos.size(); j++) {
-
-                palavra = opPalavras.get(i);
-                palavraComtoUpperCase = palavra.toUpperCase();
-                nome = ListaContatos.get(j).getNome();
-                nomeComReplace = nome.replace(" ","");
-                nomeComReplace = nomeComReplace.toUpperCase();
-
-                if(nomeComReplace.equals(palavraComtoUpperCase)){
-                    String numeroComCaractere = ListaContatos.get(j).toString();
-                    String numeroR1 = numeroComCaractere.replace("[", "");
-                    String numero = numeroR1.replace("]", "");
-
-
-
-                    ContatoBuscadoFormato contatoFormato = new ContatoBuscadoFormato(nome, numero);
-                    telefone.add(contatoFormato);
-
-                }
-            }
-        }
-
-        if(telefone.isEmpty()){
-            ContatoBuscadoFormato contatoFormato = new ContatoBuscadoFormato("Contato Inexistente", "");
-            telefone.add(contatoFormato);
-        }
-
-        return telefone;
-    }*/
 }

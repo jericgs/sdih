@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 ;import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,14 +71,14 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
     public void InformacoesDaVaga(){
 
         List<Address> addressList;
-        Geocoder geocoder =  new Geocoder(AdicionarVaga.this);
+        Geocoder geocoder =  new Geocoder(this);
         Log.i("Latitude" + Mapa.latitude,"longitude" + Mapa.longitude);
 
         try {
             addressList = geocoder.getFromLocation(Mapa.latitude,Mapa.longitude,1);
             if(addressList!=null && addressList.size()>0){
                 if(addressList.get(0).getThoroughfare()!=null)
-                    geoLocalizacao.add(addressList.get(0).getThoroughfare());
+                  geoLocalizacao.add(addressList.get(0).getThoroughfare());
                 if(addressList.get(0).getSubAdminArea()!=null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
                     geoLocalizacao.add(addressList.get(0).getSubAdminArea());
                     geoLocalizacao.add(addressList.get(0).getAdminArea());
@@ -87,7 +88,7 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
                     finish();
                 }
             } else{
-                ToastManager.show(this,"Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
+                ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
                 finish();
             }
         } catch (IOException e) {

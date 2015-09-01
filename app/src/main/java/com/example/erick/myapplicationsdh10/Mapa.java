@@ -1,17 +1,13 @@
 package com.example.erick.myapplicationsdh10;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,24 +40,13 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        actionBarSetup();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled (true);
-
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment1);
         map = mapFragment.getMap();
         mapFragment.getMapAsync(this);
-        locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
-    }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void actionBarSetup() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            SpannableString s = new SpannableString("  SDIH");
-            s.setSpan(new TypefaceSpan(this, "Aero.ttf"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            android.support.v7.app.ActionBar ab = getSupportActionBar();
-            ab.setTitle(s);
-        }
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled (true);
+        locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
     }
 
     @Override
@@ -94,7 +79,7 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
                 alert.setPositiveButton("Sim",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent telaAdicionarVaga = new Intent(Mapa.this, AdicionarVaga.class);
-                        startActivity(telaAdicionarVaga);
+                         startActivity(telaAdicionarVaga);
                     }
                 });
                 alert.show();
@@ -102,6 +87,7 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
                 longitude = latLng.longitude;
             }
         });
+
 
         addMarker(new LatLng(-5.190658, -37.346039),"Conselho Tutelar 33ª - 34ª Zona","Av. Rio Branco, 1590 - Bom Jardim");
         addMarker(new LatLng(-5.192019, -37.346993),"Fórum Dr. Silveira Martins","Av. Rio Branco, 1902 - Centro");
@@ -210,3 +196,8 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
     }
 
 }
+
+
+
+
+
