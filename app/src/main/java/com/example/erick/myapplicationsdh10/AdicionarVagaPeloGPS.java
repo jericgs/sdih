@@ -1,8 +1,13 @@
 package com.example.erick.myapplicationsdh10;
-import com.google.android.gms.maps.model.LatLng;
+
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -13,14 +18,17 @@ import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
-;import java.io.IOException;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Erick on 03/07/2015.
+ * Created by Geofrangite on 13/08/2015.
  */
-public class AdicionarVaga extends ActionBarActivity implements View.OnClickListener{
+public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnClickListener, LocationListener{
     private EditText editTextComplemento;
     private EditText editTextLogradouro;
     private EditText editTextBairro;
@@ -30,18 +38,40 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
     private Button botaoCadastarVaga;
     private EditText editTextLatitude;
     private EditText editTextLongitude;
-
     private List<String> geoLocalizacao = new ArrayList<String>();
 
+    public static double latitude;
+    public static double longitude;
+    public Context context;
+    private LocationManager locationManager;
+    private Location location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_add_vaga);
         actionBarSetup();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled (true);
-        InformacoesDaVaga();
 
+        context = getApplicationContext();
+        locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            Log.i("Dentro do","IF");
+            Toast.makeText(this, "O SDIH precisa acessar seu local. Ative o acesso à localização.", Toast.LENGTH_LONG).show();
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 0);
+            finish();
+        }else{
+            Log.i("Dentro do","ELSE");
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,1, this);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            while(location==null){
+                Log.i("Dentro do","WHILE");
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            Log.i("Latitude",Double.toString(location.getLatitude()));
+            Log.i("Longitude",Double.toString(location.getLongitude()));
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            InformacoesDaVaga();
+        }
         editTextComplemento = (EditText) findViewById(R.id.editTextComplemento);
         editTextLogradouro = (EditText) findViewById(R.id.editTextLogradouro);
         editTextBairro = (EditText) findViewById(R.id.editTextBairro);
@@ -49,9 +79,9 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
         editTextEstado = (EditText) findViewById(R.id.editTextEstado);
         editTextPais = (EditText) findViewById(R.id.editTextPais);
         editTextLongitude = (EditText)findViewById(R.id.editTextLongitude);
-        editTextLongitude.setText((Double.toString(Mapa.longitude)));
+        editTextLongitude.setText((Double.toString(longitude)));
         editTextLatitude = (EditText)findViewById(R.id.editTextLatitude);
-        editTextLatitude.setText((Double.toString(Mapa.latitude)));
+        editTextLatitude.setText((Double.toString(latitude)));
         botaoCadastarVaga = (Button) findViewById(R.id.buttonCadastro);
         botaoCadastarVaga.setOnClickListener(this);
 
@@ -70,11 +100,9 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
     public void InformacoesDaVaga(){
 
         List<Address> addressList;
-        Geocoder geocoder =  new Geocoder(AdicionarVaga.this);
-        Log.i("Latitude" + Mapa.latitude,"longitude" + Mapa.longitude);
-
+        Geocoder geocoder =  new Geocoder(AdicionarVagaPeloGPS.this);
         try {
-            addressList = geocoder.getFromLocation(Mapa.latitude,Mapa.longitude,1);
+            addressList = geocoder.getFromLocation(latitude,longitude,1);
             if(addressList!=null && addressList.size()>0){
                 if(addressList.get(0).getThoroughfare()!=null)
                     geoLocalizacao.add(addressList.get(0).getThoroughfare());
@@ -83,11 +111,11 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
                     geoLocalizacao.add(addressList.get(0).getAdminArea());
                     geoLocalizacao.add(addressList.get(0).getCountryCode());
                 } else{
-                    ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
+                    Toast.makeText(this,"Não é possível adicionar uma vaga aqui",Toast.LENGTH_LONG).show();
                     finish();
                 }
             } else{
-                ToastManager.show(this,"Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
+                Toast.makeText(this,"Não é possível adicionar uma vaga aqui",Toast.LENGTH_LONG).show();
                 finish();
             }
         } catch (IOException e) {
@@ -127,10 +155,26 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.buttonCadastro){
-            Mapa.addMarker(new LatLng(Mapa.latitude, Mapa.longitude), editTextComplemento.getText().toString(),
+            Mapa.addMarker(new LatLng(latitude,longitude), editTextComplemento.getText().toString(),
                     editTextLogradouro.getText().toString() + ", " + editTextBairro.getText().toString());
             finish();
         }
-
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+
 }

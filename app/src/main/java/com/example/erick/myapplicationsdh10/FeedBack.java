@@ -3,10 +3,13 @@ package com.example.erick.myapplicationsdh10;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,8 @@ public class FeedBack extends ActionBarActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_feedback);
         actionBarSetup();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         conteudo = (EditText)findViewById(R.id.editTextConteudo);
         btCancelar = (Button)findViewById(R.id.buttonCancelar);
@@ -44,20 +49,39 @@ public class FeedBack extends ActionBarActivity implements View.OnClickListener{
     }
 
     @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate (R.menu.menu_botaovoltar, menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id== android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onClick(View v) {
 
         if(v.getId() == R.id.buttonEnviar){
 
             if(v.getId() == R.id.buttonEnviar){
 
-                Log.i("Informação", "retorno: " + verificaNet.verificaConexao( this.getApplicationContext() ));
-                if(  verificaNet.verificaConexao( this.getApplicationContext() )  ) {
+                Log.i("Informação", "retorno: " + verificaNet.verificaInternet( this.getApplicationContext() ));
+
+                if( verificaNet.verificaInternet(this.getApplicationContext())){
 
                     try {
                         GMailSender mail = new GMailSender("sdihdevfive@gmail.com", "sleepsdih@@");
                         mail.sendMail("SDIH - FeedBack", conteudo.getText().toString(), "sdihdevfive@gmail.com", "devfive@googlegroups.com");
                         Log.i("Informação", "Try");
-                        ToastManager.show(this, "Enviado com sucesso.", ToastManager.CONFIRMACOES);
                         finish();
                     } catch (Exception e) {
                         e.printStackTrace();

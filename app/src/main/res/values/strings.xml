@@ -45,7 +45,7 @@
     <string name="labelLongitude">Longitude</string>
 
     //tela QrCode Retorno
-    <string name="textViewInformacaoCondutor">Informações do Condutor</string>
+    <string name="textViewInformacaoCondutor">Credencial</string>
     <string name="textViewInformacaoVeiculo">Informações do Veiculo</string>
     <string name="nomeCondutor">Nome:</string>
     <string name="dataNascimento">Data de Nascimento:</string>
@@ -93,6 +93,11 @@
     //tela alerta
     <string name="btSim">Sim</string>
     <string name="btNao">Não</string>
+
+  //menu mapa
+  <string name="opcao_terreno">Terreno</string>
+  <string name="opcao_satelite">Satélite</string>
+  <string name="title_activity_maps">Mapa</string>
 
   <string name="bookmark_picker_name">Bookmarks</string>
   <string name="button_add_calendar">Add to calendar</string>

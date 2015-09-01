@@ -3,9 +3,13 @@ package com.example.erick.myapplicationsdh10;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 /**
@@ -13,33 +17,65 @@ import android.widget.EditText;
  */
 public class RetornoQrCode extends ActionBarActivity {
 
-    private EditText etNome, etDataNascimento, etSexo, etCNH, etCPF, etComplemento, etBairro, etCidade, etPais, etEstado, etTelCel;
-    private EditText etModelo, etMarca, etTipo, etCor, etRenavam, etPlaca;
+    private EditText etNome, etDataNascimento, etSexo, etCNH, etCPF, etLogradouro, etComplemento, etBairro, etCidade, etPais, etEstado, etTelCel;
+    private String informacaoCondutor [], informacaoEndereco[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_retorno_qrcode);
         actionBarSetup();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        informacaoCondutor = this.getIntent().getStringArrayExtra("informacaoCondutor");
+        informacaoEndereco = this.getIntent().getStringArrayExtra("informacaoEndereco");
 
         etNome = (EditText)findViewById(R.id.editTextNome);
+        etNome.setText(informacaoCondutor[0]);
         etDataNascimento = (EditText)findViewById(R.id.editTextDataNascimento);
+        etDataNascimento.setText(informacaoCondutor[1]);
         etSexo = (EditText)findViewById(R.id.editTextSexo);
+        etSexo.setText(informacaoCondutor[2]);
         etCNH = (EditText)findViewById(R.id.editTextCnh);
+        etCNH.setText(informacaoCondutor[3]);
         etCPF = (EditText)findViewById(R.id.editTextCpf);
-        etComplemento = (EditText)findViewById(R.id.editTextComplemento);
-        etBairro = (EditText)findViewById(R.id.editTextBairro);
-        etCidade = (EditText)findViewById(R.id.editTextCidade);
-        etPais = (EditText)findViewById(R.id.editTextPais);
-        etEstado = (EditText)findViewById(R.id.editTextEstado);
-        etTelCel = (EditText)findViewById(R.id.editTextTelCel);
+        etCPF.setText(informacaoCondutor[4]);
 
-        etModelo = (EditText)findViewById(R.id.editTextModelo);
-        etMarca = (EditText)findViewById(R.id.editTextMarca);
-        etTipo = (EditText)findViewById(R.id.editTextTipo);
-        etCor = (EditText)findViewById(R.id.editTextCor);
-        etRenavam = (EditText)findViewById(R.id.editTextRenavam);
-        etPlaca = (EditText)findViewById(R.id.editTextPlaca);
+        etLogradouro = (EditText)findViewById(R.id.editTextLogradouro);
+        etLogradouro.setText(informacaoEndereco[0]);
+        etComplemento = (EditText)findViewById(R.id.editTextComplemento);
+        etComplemento.setText(informacaoEndereco[1]);
+        etBairro = (EditText)findViewById(R.id.editTextBairro);
+        etBairro.setText(informacaoEndereco[2]);
+        etCidade = (EditText)findViewById(R.id.editTextCidade);
+        etCidade.setText(informacaoEndereco[3]);
+        etEstado = (EditText)findViewById(R.id.editTextEstado);
+        etEstado.setText(informacaoEndereco[4]);
+        etPais = (EditText)findViewById(R.id.editTextPais);
+        etPais.setText(informacaoEndereco[5]);
+        etTelCel = (EditText)findViewById(R.id.editTextTelCel);
+        etTelCel.setText(informacaoCondutor[5]);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate (R.menu.menu_botaovoltar, menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id== android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -50,8 +86,6 @@ public class RetornoQrCode extends ActionBarActivity {
             android.support.v7.app.ActionBar ab = getSupportActionBar();
             ab.setTitle(s);
 
-
         }
     }
-
 }

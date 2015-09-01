@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -13,7 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
 
 /**
  * Created by Erick on 21/06/2015.
@@ -23,12 +28,18 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
     private ImageButton imagemBt1, imagemBt2, imagemBt3, imagemBt4;
     private AlertDialog alerta;
     public static final int REQUEST_CODE = 0;
+    private String respostaRetornadaQRcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_menu);
         actionBarSetup();
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         imagemBt1 = (ImageButton)findViewById(R.id.imageButton1);
         imagemBt1.setOnClickListener(this);
@@ -133,7 +144,8 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         }
 
         if(v.getId() == R.id.imageButton3){
-
+            Intent telaMapa = new Intent(this, Mapa.class);
+            startActivity(telaMapa);
         }
 
         if(v.getId() == R.id.imageButton4){
@@ -154,11 +166,56 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(REQUEST_CODE == requestCode && RESULT_OK == resultCode){
-            Toast.makeText(this, "RESULTADO: "+data.getStringExtra("SCAN_RESULT")+" ("+data.getStringExtra("SCAN_FORMAT")+")", Toast.LENGTH_LONG).show();
 
-            Intent telaRetornoQrcode = new Intent(this, RetornoQrCode.class);
-            startActivity(telaRetornoQrcode);
+        if(REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            //Toast.makeText(this, "RESULTADO: "+data.getStringExtra("SCAN_RESULT")+" ("+data.getStringExtra("SCAN_FORMAT")+")", Toast.LENGTH_LONG).show();
+
+            ArrayList<NameValuePair> parametrosPostEnviarIdQRCode = new ArrayList<NameValuePair>();
+            parametrosPostEnviarIdQRCode.add(new BasicNameValuePair("idCode",  data.getStringExtra("SCAN_RESULT")));
+
+            try {
+                respostaRetornadaQRcode = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarIdQRCode, parametrosPostEnviarIdQRCode);
+                String respostaQRcode = respostaRetornadaQRcode.substring(4);
+                Log.i("Informação Usuario 1: ", respostaQRcode);
+
+                if(respostaQRcode.contains("~")){
+
+                    String retornoQRcode [];
+                    retornoQRcode = respostaQRcode.split("@");
+
+                    for(int i = 0; i < retornoQRcode.length; i++){
+                        Log.i("Retorno" + i + " : ", retornoQRcode[i]);
+                    }
+
+                    String informacaoCondutor [];
+                    informacaoCondutor = retornoQRcode[0].split("~");
+
+                    for(int i = 0; i < informacaoCondutor.length; i++){
+                        Log.i("Retorno" + i + " : ", informacaoCondutor[i]);
+                    }
+
+                    String informacaoEndereco [];
+                    informacaoEndereco = retornoQRcode[1].split("~");
+
+                    for(int i = 0; i < informacaoEndereco.length; i++){
+                        Log.i("Retorno" + i + " : ", informacaoEndereco[i]);
+                    }
+
+                    Intent telaRetornoQrcode = new Intent(this, RetornoQrCode.class);
+                    telaRetornoQrcode.putExtra("informacaoCondutor", informacaoCondutor);
+                    telaRetornoQrcode.putExtra("informacaoEndereco", informacaoEndereco);
+                    startActivity(telaRetornoQrcode);
+
+                }else{
+                    ToastManager.show(this, "A busca não foi realizada com sucesso.", ToastManager.INFORMACOES);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else{
+            ToastManager.show(this, " A leitura não foi realizada com sucesso.", ToastManager.INFORMACOES);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.erick.myapplicationsdh10;
 
+import android.util.Log;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +14,6 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -92,17 +93,17 @@ public class GMailSender extends javax.mail.Authenticator {
 
             message.setContent(_multipart);
 
-            new Thread(new Runnable() {
+            new Thread(new Runnable(){
                 @Override
-                public void run() {
+                public void run(){
                     try {
                         Transport.send(message);
-                    } catch (MessagingException e) {
-                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace(); //por ultimo
                     }
                 }
             }).start();
-    }   
+    }
 
     public class ByteArrayDataSource implements DataSource {   
         private byte[] data;   
