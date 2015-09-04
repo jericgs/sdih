@@ -5,18 +5,24 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+
 
 public class Login extends Activity implements View.OnClickListener, View.OnKeyListener{
 
     private EditText caixa1=null, caixa2= null;
     private Button botao1;
-    private String respostaRetornada = null;
+    private String respostaRetornada;
     private ProgressDialog pd;
     private Handler handler = new Handler();
     private boolean logico = false;
@@ -26,6 +32,11 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_login);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         caixa1 = (EditText)findViewById(R.id.editText1);
         caixa1.setOnKeyListener(this);
@@ -40,7 +51,7 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
     @Override
     public void onClick(View v) {
 
-        if((v.getId() == R.id.button1)){
+        if((v.getId() == R.id.button1)) {
 
             pd = new ProgressDialog(this);
             pd.setMessage("Loading...");
@@ -51,24 +62,53 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
 
             telaMenu = new Intent(this, Menu.class);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+            if (caixa1.getText().toString().equals("") || caixa2.getText().toString().equals("")) {
+                ToastManager.show(this, "Campo vazio", ToastManager.INFORMACOES);
+                pd.dismiss();
+            }
+            else {
 
-                    try {
-                        Thread.sleep(5900);
+                ArrayList<NameValuePair> parametroParaLoginUsuario = new ArrayList<NameValuePair>();
+
+                parametroParaLoginUsuario.add(new BasicNameValuePair("login", caixa1.getText().toString()));
+                parametroParaLoginUsuario.add(new BasicNameValuePair("senha", caixa2.getText().toString()));
+
+                try {
+
+                    respostaRetornada = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarSolicitacaoLogin, parametroParaLoginUsuario);
+                    Log.i("informação", respostaRetornada);
+
+                    if(respostaRetornada.toString().contains("1")){
+
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+
+                                try {
+                                    Thread.sleep(1000);
+                                    pd.dismiss();
+                                    startActivity(telaMenu);
+                                    finish();
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                    pd.dismiss();
+                                }
+                            }
+
+                        }).start();
+
+                    }else{
                         pd.dismiss();
-                        finish();
-                        startActivity(telaMenu);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        ToastManager.show(this, "Usuário ou senha incorreto", ToastManager.INFORMACOES);
                     }
 
-
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }).start();
+            }
         }
-
     }
 
     @Override

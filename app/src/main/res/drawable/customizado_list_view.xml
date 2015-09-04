@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:dither="true">
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:dither="true">
 
     <gradient
-        android:startColor="#FFD800"
-        android:endColor="#FFD800"
+        android:startColor="#FFEE75"
+        android:endColor="#FFEE75"
         android:centerColor="#FFEE75"
         android:angle="180" />
 
@@ -17,4 +15,4 @@
         android:width="0dp"
         android:color="#66ffffff" />
 
-</shape> 
+</shape>

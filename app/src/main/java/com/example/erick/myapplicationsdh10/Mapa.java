@@ -1,18 +1,17 @@
 package com.example.erick.myapplicationsdh10;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,14 +22,13 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import static android.widget.Toast.makeText;
-
-public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
+public class Mapa extends ActionBarActivity  implements View.OnClickListener, OnMapReadyCallback {
     private SupportMapFragment mapFragment;
     public static GoogleMap map;
     public static double latitude;
     public static double longitude;
     private LocationManager locationManager;
+    private AlertDialog alerta;
 
     public static  void addMarker(LatLng latLng, String string1, String string2){
         map.addMarker(new MarkerOptions().title(string1).snippet(string2).position(latLng)).
@@ -47,6 +45,7 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled (true);
         locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
+
     }
 
     @Override
@@ -68,21 +67,12 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick( LatLng latLng) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(Mapa.this);
-                alert.setTitle("Deseja adicionar uma vaga aqui?");
-                alert.setMessage(null);
-                alert.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                alert.setPositiveButton("Sim",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent telaAdicionarVaga = new Intent(Mapa.this, AdicionarVaga.class);
-                         startActivity(telaAdicionarVaga);
-                    }
-                });
-                alert.show();
+
+                int layout = R.layout.tela_alerta_add_vaga;
+                int idButtonSim = R.id.buttonSim;
+                int idButtonNao = R.id.buttonNao;
+                alertaDialogo(layout, idButtonSim, idButtonNao);
+
                 latitude = latLng.latitude;
                 longitude = latLng.longitude;
             }
@@ -158,6 +148,19 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
 
     }
 
+    public void alertaDialogo(int layout, int idButtonSim, int idButtonNao){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Mapa.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(layout, null);
+        view.findViewById(idButtonSim).setOnClickListener(this);
+        view.findViewById(idButtonNao).setOnClickListener(this);
+        builder.setCustomTitle(view);
+        alerta = builder.create();
+        alerta.setCancelable(false);
+        alerta.setCanceledOnTouchOutside(false);
+        alerta.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -190,11 +193,24 @@ public class Mapa extends ActionBarActivity  implements OnMapReadyCallback {
     public void habilitaGPS(){
         if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             Log.i("Dentro do", "IF");
-            makeText(this, "O SDIH precisa acessar seu local. Ative o acesso à localização.", Toast.LENGTH_LONG).show();
+            ToastManager.show(this, "O SDIH precisa acessar seu local. Ative o acesso à localização.", ToastManager.INFORMACOES);
             startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 0);
         }
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if(v.getId() == R.id.buttonSim){
+            Intent telaAdicionarVaga = new Intent(Mapa.this, AdicionarVaga.class);
+            startActivity(telaAdicionarVaga);
+            alerta.dismiss();
+        }
+
+        if(v.getId() == R.id.buttonNao){
+            alerta.dismiss();
+        }
+    }
 }
 
 

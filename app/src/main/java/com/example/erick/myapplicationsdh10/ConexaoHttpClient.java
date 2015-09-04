@@ -25,12 +25,12 @@ import java.util.ArrayList;
 public class ConexaoHttpClient {
     public static final int HTTP_TIMEOUT = 30 * 1000;
     private static HttpClient httpclient;
-    private static String IP = "10.1.0.159";
+    private static String IP = "10.0.0.100";
 
     public static String enviarIdQRCode = "http://" + IP + ":8080//WebApplicationSDIH/buscaQRCODE.jsp?";
-    //public static String enviarFamiliar = "http://" + IP + ":8080/WebApplicationSOS/gravarFamiliar.jsp?";
+    public static String enviarNomeBuscar = "http://" + IP + ":8080/WebApplicationSDIH/retornarVagas.jsp?";
     //public static String enviarSolicitacaoDeSocorro = "http://" + IP + ":8080/WebApplicationSOS/gravarSolicitacao.jsp?";
-    //public static String enviarSolicitacaoLogin = "http://" + IP + ":8080/WebApplicationSOS/loginUsuario.jsp?";
+    public static String enviarSolicitacaoLogin = "http://" + IP + ":8080/WebApplicationSDIH/login.jsp?";
 
     private static 	HttpClient geHttpClient(){//retorna a conexao, ou seja o cliente
         if (httpclient == null){

@@ -212,6 +212,7 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
 
             } catch (Exception e) {
                 e.printStackTrace();
+                ToastManager.show(this, " A leitura não foi realizada com sucesso.", ToastManager.INFORMACOES);
             }
 
         }else{

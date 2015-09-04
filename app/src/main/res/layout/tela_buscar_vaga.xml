@@ -35,6 +35,7 @@
             android:src="@drawable/abc_ic_search_api_mtrl_alpha"
             android:id="@+id/botaoBuscar" />
 
+
     </LinearLayout>
 
     <TextView
