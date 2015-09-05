@@ -5,7 +5,23 @@ package com.example.erick.myapplicationsdh10;
  */
 public class Endereco {
 
-    private String logradouro, complemento,bairro, cidade, estado, pais, longitude, latitude;
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String pais;
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    private String longitude;
+    private String latitude;
 
     public Endereco(String logradouro, String complemento, String bairro, String cidade, String estado, String pais, String longitude, String latitude) {
         this.logradouro = logradouro;

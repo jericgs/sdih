@@ -1,7 +1,5 @@
 package com.example.erick.myapplicationsdh10;
 
-import android.util.Log;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,17 +90,8 @@ public class GMailSender extends javax.mail.Authenticator {
             }
 
             message.setContent(_multipart);
+            Transport.send(message);
 
-            new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    try {
-                        Transport.send(message);
-                    } catch (Exception e) {
-                        e.printStackTrace(); //por ultimo
-                    }
-                }
-            }).start();
     }
 
     public class ByteArrayDataSource implements DataSource {   

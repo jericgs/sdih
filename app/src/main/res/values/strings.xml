@@ -22,7 +22,7 @@
     <string name="item1_desenvolvedores">Desenvolvedores</string>
     <string name="item2_feedback">FeedBack</string>
     <string name="item3_Sobre">Sobre</string>
-    <string name="item4_Sobre">Sair</string>
+    <string name="item4_Sobre">Deslogar</string>
 
     //tela_login
     <string name="caixaUsuario">Usuário</string>

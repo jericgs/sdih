@@ -22,6 +22,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 public class Mapa extends ActionBarActivity  implements View.OnClickListener, OnMapReadyCallback {
     private SupportMapFragment mapFragment;
     public static GoogleMap map;
@@ -29,24 +31,29 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
     public static double longitude;
     private LocationManager locationManager;
     private AlertDialog alerta;
+    private List<String> coordenadasChave;
+
 
     public static  void addMarker(LatLng latLng, String string1, String string2){
         map.addMarker(new MarkerOptions().title(string1).snippet(string2).position(latLng)).
                 setIcon((BitmapDescriptorFactory.fromResource(R.drawable.ic_def)));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        coordenadasChave =  this.getIntent().getStringArrayListExtra("informacoes");
+
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment1);
         map = mapFragment.getMap();
         mapFragment.getMapAsync(this);
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled (true);
         locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
-
     }
+
 
     @Override
     public void onMapReady(GoogleMap map) {
@@ -60,23 +67,36 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
                 return false;
             }
         });
-        map.getUiSettings().setZoomControlsEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().
-                target(new LatLng(-5.1841285, -37.3477805)).zoom(13).bearing(0).tilt(90).build()));
 
-        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick( LatLng latLng) {
+        //Log.i("informacao", " "+coordenadasChave.get(0).toString().equalsIgnoreCase("vaga"));
 
-                int layout = R.layout.tela_alerta_add_vaga;
-                int idButtonSim = R.id.buttonSim;
-                int idButtonNao = R.id.buttonNao;
-                alertaDialogo(layout, idButtonSim, idButtonNao);
 
-                latitude = latLng.latitude;
-                longitude = latLng.longitude;
-            }
-        });
+        if(coordenadasChave.get(0).toString().equalsIgnoreCase("vaga")) {
+            map.getUiSettings().setZoomControlsEnabled(true);
+            map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().
+                    target(new LatLng(Double.parseDouble(coordenadasChave.get(1).toString()), Double.parseDouble(coordenadasChave.get(2).toString()))).zoom(20).bearing(0).tilt(90).build()));
+        }
+
+        if(coordenadasChave.get(0).toString().equalsIgnoreCase("menu")){
+
+            map.getUiSettings().setZoomControlsEnabled(true);
+            map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().
+                    target(new LatLng(-5.1841285, -37.3477805)).zoom(13).bearing(0).tilt(90).build()));
+
+            map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+
+                    int layout = R.layout.tela_alerta_add_vaga;
+                    int idButtonSim = R.id.buttonSim;
+                    int idButtonNao = R.id.buttonNao;
+                    alertaDialogo(layout, idButtonSim, idButtonNao);
+
+                    latitude = latLng.latitude;
+                    longitude = latLng.longitude;
+                }
+            });
+        }
 
 
         addMarker(new LatLng(-5.190658, -37.346039),"Conselho Tutelar 33ª - 34ª Zona","Av. Rio Branco, 1590 - Bom Jardim");

@@ -1,6 +1,7 @@
 package com.example.erick.myapplicationsdh10;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -51,6 +52,7 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         listaEnderecos = (ListView)findViewById(R.id.listView);
+        listaEnderecos.setOnItemClickListener(this);
         nomeBuscado = (EditText)findViewById(R.id.nomeBuscado);
         btBuscar = (ImageButton)findViewById(R.id.botaoBuscar);
         btBuscar.setOnClickListener(this);
@@ -141,6 +143,15 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        //conectar ao mapa
+        Log.i("Informação", "P: " + position + " I: " + id);
+
+        ArrayList<String> coodenadas = new ArrayList<>();
+        coodenadas.add("vaga");
+        coodenadas.add(enderecosLista.get(position).getLongitude());
+        coodenadas.add(enderecosLista.get(position).getLatitude());
+        Intent tela_Mapa = new Intent(this, Mapa.class);
+        tela_Mapa.putStringArrayListExtra("informacoes", coodenadas);
+        startActivity(tela_Mapa);
+
     }
 }

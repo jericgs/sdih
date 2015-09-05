@@ -138,13 +138,15 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         }
 
         if(v.getId() == R.id.imageButton2){
-
             Intent telaAdicionarVaga = new Intent(this, AdicionarVagaPeloGPS.class);
             startActivity(telaAdicionarVaga);
         }
 
         if(v.getId() == R.id.imageButton3){
+            ArrayList<String> chave = new ArrayList<>();
+            chave.add("menu");
             Intent telaMapa = new Intent(this, Mapa.class);
+            telaMapa.putStringArrayListExtra("informacoes", chave);
             startActivity(telaMapa);
         }
 
@@ -163,6 +165,7 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
             alerta.dismiss();
         }
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
