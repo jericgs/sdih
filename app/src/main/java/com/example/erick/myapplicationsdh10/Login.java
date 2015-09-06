@@ -17,7 +17,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 
-
 public class Login extends Activity implements View.OnClickListener, View.OnKeyListener{
 
     private EditText caixa1=null, caixa2= null;

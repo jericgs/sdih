@@ -1,6 +1,5 @@
 package com.example.erick.myapplicationsdh10;
 
-import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -29,8 +28,9 @@ public class ConexaoHttpClient {
 
     public static String enviarIdQRCode = "http://" + IP + ":8080//WebApplicationSDIH/buscaQRCODE.jsp?";
     public static String enviarNomeBuscar = "http://" + IP + ":8080/WebApplicationSDIH/retornarVagas.jsp?";
-    //public static String enviarSolicitacaoDeSocorro = "http://" + IP + ":8080/WebApplicationSOS/gravarSolicitacao.jsp?";
+    public static String enviarVaga = "http://" + IP + ":8080/WebApplicationSDIH/adicionarVaga.jsp?";
     public static String enviarSolicitacaoLogin = "http://" + IP + ":8080/WebApplicationSDIH/login.jsp?";
+    public static String enviarSolicitacaoVagasMapa = "http://" + IP + ":8080/WebApplicationSDIH/vagasMapa.jsp?";
 
     private static 	HttpClient geHttpClient(){//retorna a conexao, ou seja o cliente
         if (httpclient == null){

@@ -1,10 +1,11 @@
 package com.example.erick.myapplicationsdh10;
-import com.google.android.gms.maps.model.LatLng;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
@@ -13,8 +14,10 @@ import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-;import java.io.IOException;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +25,17 @@ import java.util.List;
  * Created by Erick on 03/07/2015.
  */
 public class AdicionarVaga extends ActionBarActivity implements View.OnClickListener{
-    private EditText editTextComplemento;
+
     private EditText editTextLogradouro;
+    private EditText editTextComplemento;
     private EditText editTextBairro;
     private EditText editTextCidade ;
     private EditText editTextEstado;
     private EditText editTextPais;
-    private Button botaoCadastarVaga;
     private EditText editTextLatitude;
     private EditText editTextLongitude;
+    private Button botaoCadastarVaga;
+    private String respostaRetornada;
 
     private List<String> geoLocalizacao = new ArrayList<String>();
 
@@ -42,6 +47,11 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled (true);
         InformacoesDaVaga();
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         editTextComplemento = (EditText) findViewById(R.id.editTextComplemento);
         editTextLogradouro = (EditText) findViewById(R.id.editTextLogradouro);
@@ -128,9 +138,45 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.buttonCadastro){
-            Mapa.addMarker(new LatLng(Mapa.latitude, Mapa.longitude), editTextComplemento.getText().toString(),
-                    editTextLogradouro.getText().toString() + ", " + editTextBairro.getText().toString());
-            finish();
+
+            ArrayList<NameValuePair> parametroAddVaga = new ArrayList<>();
+            parametroAddVaga.add(new BasicNameValuePair("logradouro", editTextLogradouro.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("complemento", editTextComplemento.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("bairro", editTextBairro.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("cidade", editTextCidade.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("estado", editTextEstado.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("pais", editTextPais.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("latitude", editTextLatitude.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("longitude", editTextLongitude.getText().toString()));
+
+            try{
+
+                respostaRetornada = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarVaga, parametroAddVaga);
+
+                if(respostaRetornada.toString().contains("1")){
+                    ToastManager.show(this, "Vaga cadastrada com sucesso", ToastManager.CONFIRMACOES);
+                    ArrayList<String> chave = new ArrayList<>();
+                    chave.add("vagaadd");
+                    Intent tela_mapa = new Intent(this, Mapa.class);
+                    tela_mapa.putStringArrayListExtra("informacoes", chave);
+                    startActivity(tela_mapa);
+                    finish();
+                }
+
+                if(respostaRetornada.toString().contains("0")){
+                    ToastManager.show(this, "A vaga não foi cadastrada com sucesso", ToastManager.INFORMACOES);
+                    ArrayList<String> chave = new ArrayList<>();
+                    chave.add("vagaadd");
+                    Intent tela_mapa = new Intent(this, Mapa.class);
+                    tela_mapa.putStringArrayListExtra("informacoes", chave);
+                    startActivity(tela_mapa);
+                    finish();
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+                ToastManager.show(this, "Erro no envio", ToastManager.ERROS);
+            }
         }
 
     }

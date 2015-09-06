@@ -10,7 +10,6 @@ import android.text.SpannableString;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-
 /**
  * Created by Erick on 08/07/2015.
  */

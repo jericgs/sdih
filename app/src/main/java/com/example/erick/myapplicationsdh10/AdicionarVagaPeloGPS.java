@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
@@ -19,7 +20,9 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.maps.model.LatLng;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,8 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
     public Context context;
     private LocationManager locationManager;
     private Location location;
+    private String respostaRetornada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,11 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
         actionBarSetup();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled (true);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         context = getApplicationContext();
         locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
@@ -156,9 +166,35 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.buttonCadastro){
-            Mapa.addMarker(new LatLng(latitude,longitude), editTextComplemento.getText().toString(),
-                    editTextLogradouro.getText().toString() + ", " + editTextBairro.getText().toString());
-            finish();
+
+            ArrayList<NameValuePair> parametroAddVaga = new ArrayList<>();
+            parametroAddVaga.add(new BasicNameValuePair("logradouro", editTextLogradouro.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("complemento", editTextComplemento.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("bairro", editTextBairro.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("cidade", editTextCidade.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("estado", editTextEstado.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("pais", editTextPais.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("latitude", editTextLatitude.getText().toString()));
+            parametroAddVaga.add(new BasicNameValuePair("longitude", editTextLongitude.getText().toString()));
+
+            try{
+
+                respostaRetornada = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarVaga, parametroAddVaga);
+
+                if(respostaRetornada.toString().contains("1")){
+                    ToastManager.show(this, "Vaga cadastrada com sucesso", ToastManager.CONFIRMACOES);
+                    finish();
+                }
+
+                if(respostaRetornada.toString().contains("0")){
+                    ToastManager.show(this, "A vaga não foi cadastrada com sucesso", ToastManager.INFORMACOES);
+                    finish();
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+                ToastManager.show(this, "Erro no envio", ToastManager.ERROS);
+            }
         }
     }
 

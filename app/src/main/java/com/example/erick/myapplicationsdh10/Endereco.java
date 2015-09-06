@@ -5,12 +5,29 @@ package com.example.erick.myapplicationsdh10;
  */
 public class Endereco {
 
-    private String logradouro;
-    private String complemento;
-    private String bairro;
-    private String cidade;
-    private String estado;
-    private String pais;
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getPais() {
+        return pais;
+    }
 
     public String getLongitude() {
         return longitude;
@@ -20,6 +37,12 @@ public class Endereco {
         return latitude;
     }
 
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String pais;
     private String longitude;
     private String latitude;
 

@@ -2,11 +2,6 @@ package com.example.erick.myapplicationsdh10;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.util.Log;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * Created by Erick on 20/08/2015.
