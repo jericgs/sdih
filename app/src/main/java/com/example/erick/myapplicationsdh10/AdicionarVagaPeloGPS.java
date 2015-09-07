@@ -193,7 +193,7 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
 
             }catch (Exception e){
                 e.printStackTrace();
-                ToastManager.show(this, "Erro no envio", ToastManager.ERROS);
+                ToastManager.show(this, "Erro no envio. verifique sua conexão", ToastManager.ERROS);
             }
         }
     }

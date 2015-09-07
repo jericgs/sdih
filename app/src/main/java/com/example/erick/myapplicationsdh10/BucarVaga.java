@@ -134,6 +134,7 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
 
             }catch (Exception e){
                 e.printStackTrace();
+                ToastManager.show(this, "Erro na busca. verifique sua conexão.", ToastManager.ERROS);
             }
 
         }

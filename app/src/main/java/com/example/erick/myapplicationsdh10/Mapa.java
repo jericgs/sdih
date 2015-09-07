@@ -73,7 +73,6 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
 
         //Log.i("informacao", " "+coordenadasChave.get(0).toString().equalsIgnoreCase("vaga"));
 
-
         if(coordenadasChave.get(0).toString().equalsIgnoreCase("vaga")) {
             map.getUiSettings().setZoomControlsEnabled(true);
             map.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().
@@ -100,7 +99,6 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
                 }
             });
         }
-
 
         try {
 
@@ -137,15 +135,17 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
                 ToastManager.show(this, "Não existe vagas nessa rua.", ToastManager.INFORMACOES);
             }
 
+            for(int i = 0; i < enderecosLista.size(); i++){
+
+                addMarker(new LatLng(Double.parseDouble(enderecosLista.get(i).getLongitude().toString()), Double.parseDouble(enderecosLista.get(i).getLatitude().toString())),
+                        enderecosLista.get(i).getComplemento().toString(), enderecosLista.get(i).getLogradouro().toString() + ", " + enderecosLista.get(i).getBairro().toString());
+
+            }
+
         }catch (Exception e){
             e.printStackTrace();
-        }
-
-        for(int i = 0; i < enderecosLista.size(); i++){
-
-            addMarker(new LatLng(Double.parseDouble(enderecosLista.get(i).getLongitude().toString()), Double.parseDouble(enderecosLista.get(i).getLatitude().toString())),
-                    enderecosLista.get(i).getComplemento().toString(), enderecosLista.get(i).getLogradouro().toString() + ", " + enderecosLista.get(i).getBairro().toString());
-
+            ToastManager.show(this, "erro. Verifique sua conexão.", ToastManager.INFORMACOES);
+            finish();
         }
 
     }
