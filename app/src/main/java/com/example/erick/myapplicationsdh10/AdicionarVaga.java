@@ -137,47 +137,57 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+
         if(v.getId() == R.id.buttonCadastro){
 
-            ArrayList<NameValuePair> parametroAddVaga = new ArrayList<>();
-            parametroAddVaga.add(new BasicNameValuePair("logradouro", editTextLogradouro.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("complemento", editTextComplemento.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("bairro", editTextBairro.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("cidade", editTextCidade.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("estado", editTextEstado.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("pais", editTextPais.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("latitude", editTextLatitude.getText().toString()));
-            parametroAddVaga.add(new BasicNameValuePair("longitude", editTextLongitude.getText().toString()));
+            if (editTextLogradouro.getText().toString().equals("") || editTextComplemento.getText().toString().equals("") ||
+                editTextBairro.getText().toString().equals("") || editTextCidade.getText().toString().equals("") ||
+                editTextEstado.getText().toString().equals("") || editTextPais.getText().toString().equals("") ||
+                editTextLatitude.getText().toString().equals("") || editTextLongitude.getText().toString().equals("")) {
 
-            try{
+                ToastManager.show(this, "preencha todos os campos", ToastManager.INFORMACOES);
 
-                respostaRetornada = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarVaga, parametroAddVaga);
+            }else{
 
-                if(respostaRetornada.toString().contains("1")){
-                    ToastManager.show(this, "Vaga cadastrada com sucesso", ToastManager.CONFIRMACOES);
-                    ArrayList<String> chave = new ArrayList<>();
-                    chave.add("vagaadd");
-                    Intent tela_mapa = new Intent(this, Mapa.class);
-                    tela_mapa.putStringArrayListExtra("informacoes", chave);
-                    startActivity(tela_mapa);
-                    finish();
+                ArrayList<NameValuePair> parametroAddVaga = new ArrayList<>();
+                parametroAddVaga.add(new BasicNameValuePair("logradouro", editTextLogradouro.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("complemento", editTextComplemento.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("bairro", editTextBairro.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("cidade", editTextCidade.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("estado", editTextEstado.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("pais", editTextPais.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("latitude", editTextLatitude.getText().toString()));
+                parametroAddVaga.add(new BasicNameValuePair("longitude", editTextLongitude.getText().toString()));
+
+                try{
+
+                    respostaRetornada = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarVaga, parametroAddVaga);
+
+                    if(respostaRetornada.toString().contains("1")){
+                        ToastManager.show(this, "Vaga cadastrada com sucesso", ToastManager.CONFIRMACOES);
+                        ArrayList<String> chave = new ArrayList<>();
+                        chave.add("vagaadd");
+                        Intent tela_mapa = new Intent(this, Mapa.class);
+                        tela_mapa.putStringArrayListExtra("informacoes", chave);
+                        startActivity(tela_mapa);
+                        finish();
+                    }
+
+                    if(respostaRetornada.toString().contains("0")){
+                        ToastManager.show(this, "A vaga não foi cadastrada com sucesso", ToastManager.INFORMACOES);
+                        ArrayList<String> chave = new ArrayList<>();
+                        chave.add("vagaadd");
+                        Intent tela_mapa = new Intent(this, Mapa.class);
+                        tela_mapa.putStringArrayListExtra("informacoes", chave);
+                        startActivity(tela_mapa);
+                        finish();
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    ToastManager.show(this, "Erro! verifique sua conexão", ToastManager.ERROS);
                 }
-
-                if(respostaRetornada.toString().contains("0")){
-                    ToastManager.show(this, "A vaga não foi cadastrada com sucesso", ToastManager.INFORMACOES);
-                    ArrayList<String> chave = new ArrayList<>();
-                    chave.add("vagaadd");
-                    Intent tela_mapa = new Intent(this, Mapa.class);
-                    tela_mapa.putStringArrayListExtra("informacoes", chave);
-                    startActivity(tela_mapa);
-                    finish();
-                }
-
-            }catch (Exception e){
-                e.printStackTrace();
-                ToastManager.show(this, "Erro no envio", ToastManager.ERROS);
             }
         }
-
     }
 }

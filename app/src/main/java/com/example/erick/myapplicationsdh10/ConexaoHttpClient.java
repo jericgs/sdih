@@ -24,13 +24,13 @@ import java.util.ArrayList;
 public class ConexaoHttpClient {
     public static final int HTTP_TIMEOUT = 30 * 1000;
     private static HttpClient httpclient;
-    private static String IP = "10.0.0.100";
+    private static String IP = "di.uern.br:8080";
 
-    public static String enviarIdQRCode = "http://" + IP + ":8080//WebApplicationSDIH/buscaQRCODE.jsp?";
-    public static String enviarNomeBuscar = "http://" + IP + ":8080/WebApplicationSDIH/retornarVagas.jsp?";
-    public static String enviarVaga = "http://" + IP + ":8080/WebApplicationSDIH/adicionarVaga.jsp?";
-    public static String enviarSolicitacaoLogin = "http://" + IP + ":8080/WebApplicationSDIH/login.jsp?";
-    public static String enviarSolicitacaoVagasMapa = "http://" + IP + ":8080/WebApplicationSDIH/vagasMapa.jsp?";
+    public static String enviarIdQRCode = "http://" + IP + "/WebApplicationSDIH/buscaQRCODE.jsp?";
+    public static String enviarNomeBuscar = "http://" + IP + "/WebApplicationSDIH/retornarVagas.jsp?";
+    public static String enviarVaga = "http://" + IP + "/WebApplicationSDIH/adicionarVaga.jsp?";
+    public static String enviarSolicitacaoLogin = "http://" + IP + "/WebApplicationSDIH/login.jsp?";
+    public static String enviarSolicitacaoVagasMapa = "http://" + IP + "/WebApplicationSDIH/vagasMapa.jsp?";
 
     private static 	HttpClient geHttpClient(){//retorna a conexao, ou seja o cliente
         if (httpclient == null){

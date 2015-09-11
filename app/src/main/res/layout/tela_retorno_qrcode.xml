@@ -193,29 +193,72 @@
                         android:enabled="false"/>
                 </LinearLayout>
 
-                <TextView
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/preto_000000"
-                    android:textSize="15dp"
-                    android:paddingLeft="@dimen/textView_margem"
-                    android:paddingTop="@dimen/textView_margem"
-                    android:textStyle="bold"
-                    android:text="@string/labelLogradouro"
-                    android:id="@+id/textViewLogradouro" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:textColor="@color/branco_ffffff"
-                    android:singleLine="true"
-                    android:ems="11"
-                    android:maxLength="60"
-                    android:background="@drawable/customizado_edittext"
-                    android:layout_margin="@dimen/tc_margem"
-                    android:id="@+id/editTextLogradouro"
-                    android:enabled="false"/>
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/labelLogradouro"
+                        android:id="@+id/textViewLogradouro" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@color/preto_000000"
+                        android:textSize="15dp"
+                        android:paddingLeft="@dimen/textView_margem"
+                        android:paddingTop="@dimen/textView_margem"
+                        android:textStyle="bold"
+                        android:text="@string/labelNumero"
+                        android:id="@+id/textViewNumero" />
+
+                </LinearLayout>
+
+                    <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="60"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextLogradouro"
+                        android:enabled="false"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:focusable="false"
+                        android:textColor="@color/branco_ffffff"
+                        android:singleLine="true"
+                        android:ems="11"
+                        android:maxLength="60"
+                        android:background="@drawable/customizado_edittext"
+                        android:layout_margin="@dimen/tc_margem"
+                        android:id="@+id/editTextNumero"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -337,7 +380,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.6"
                         android:textColor="@color/preto_000000"
                         android:textSize="15dp"
                         android:paddingLeft="@dimen/textView_margem"
@@ -374,7 +417,7 @@
                         android:focusable="false"
                         android:singleLine="true"
                         android:ems="11"
-                        android:maxLength="2"
+                        android:maxLength="3"
                         android:background="@drawable/customizado_edittext"
                         android:layout_margin="@dimen/tc_margem"
                         android:id="@+id/editTextPais"

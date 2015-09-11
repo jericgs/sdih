@@ -37,6 +37,7 @@
     <string name="labelCadastro">Cadastro</string>
     <string name="labelComplemento">Complemento:</string>
     <string name="labelLogradouro">Logradouro:</string>
+    <string name="labelNumero">Número:</string>
     <string name="labelBairro">Bairro:</string>
     <string name="labelCidade">Cidade:</string>
     <string name="labelEstado">Estado:</string>

@@ -20,7 +20,6 @@ import android.webkit.WebViewClient;
 public class WebViewDesenvolvedor extends ActionBarActivity{
 
     private WebView webView;
-    private ProgressDialog pd;
     private String url;
     private String chave;
 
@@ -34,12 +33,6 @@ public class WebViewDesenvolvedor extends ActionBarActivity{
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         chave = this.getIntent().getStringExtra("Chave");
-
-        pd = new ProgressDialog(this);
-        pd.setMessage("Carregando...");
-        pd.setCancelable(false);
-        pd.setCanceledOnTouchOutside(false);
-        pd.show();
 
         webView = (WebView)findViewById(R.id.webViewDesenvolvedores);
         webView.setWebViewClient(new MyWebViewClient());
@@ -97,7 +90,6 @@ public class WebViewDesenvolvedor extends ActionBarActivity{
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
-            pd.dismiss();
             return true;
         }
     }

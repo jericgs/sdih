@@ -16,7 +16,7 @@ import android.widget.EditText;
  */
 public class RetornoQrCode extends ActionBarActivity {
 
-    private EditText etNome, etDataNascimento, etSexo, etCNH, etCPF, etLogradouro, etComplemento, etBairro, etCidade, etPais, etEstado, etTelCel;
+    private EditText etNome, etDataNascimento, etSexo, etCNH, etCPF, etLogradouro, etNumero, etComplemento, etBairro, etCidade, etPais, etEstado, etTelCel;
     private String informacaoCondutor [], informacaoEndereco[];
 
     @Override
@@ -43,6 +43,8 @@ public class RetornoQrCode extends ActionBarActivity {
 
         etLogradouro = (EditText)findViewById(R.id.editTextLogradouro);
         etLogradouro.setText(informacaoEndereco[0]);
+        etNumero = (EditText)findViewById(R.id.editTextNumero);
+        etNumero.setText(informacaoEndereco[6]);
         etComplemento = (EditText)findViewById(R.id.editTextComplemento);
         etComplemento.setText(informacaoEndereco[1]);
         etBairro = (EditText)findViewById(R.id.editTextBairro);

@@ -132,7 +132,7 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
 
 
             }else{
-                ToastManager.show(this, "Não existe vagas nessa rua.", ToastManager.INFORMACOES);
+                ToastManager.show(this, "Não existe vagas nessa região.", ToastManager.INFORMACOES);
             }
 
             for(int i = 0; i < enderecosLista.size(); i++){
@@ -144,7 +144,7 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
 
         }catch (Exception e){
             e.printStackTrace();
-            ToastManager.show(this, "erro. Verifique sua conexão.", ToastManager.INFORMACOES);
+            ToastManager.show(this, "Erro! Verifique sua conexão.", ToastManager.INFORMACOES);
             finish();
         }
 

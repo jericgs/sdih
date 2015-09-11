@@ -62,7 +62,7 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
             telaMenu = new Intent(this, Menu.class);
 
             if (caixa1.getText().toString().equals("") || caixa2.getText().toString().equals("")) {
-                ToastManager.show(this, "Campo vazio", ToastManager.INFORMACOES);
+                ToastManager.show(this, "preencha todos os campos", ToastManager.INFORMACOES);
                 pd.dismiss();
             }
             else {

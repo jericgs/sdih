@@ -123,6 +123,7 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         if(id == R.id.item4_sair){
             Intent telaLogin = new Intent(this, Login.class);
             startActivity(telaLogin);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
