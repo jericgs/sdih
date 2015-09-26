@@ -26,11 +26,14 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
     private Handler handler = new Handler();
     private boolean logico = false;
     private Intent telaMenu;
+    private DBAdapter banco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_login);
+
+        banco = new DBAdapter(this);
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -62,7 +65,7 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
             telaMenu = new Intent(this, Menu.class);
 
             if (caixa1.getText().toString().equals("") || caixa2.getText().toString().equals("")) {
-                ToastManager.show(this, "preencha todos os campos", ToastManager.INFORMACOES);
+                ToastManager.show(this, "Preencha todos os campos", ToastManager.INFORMACOES);
                 pd.dismiss();
             }
             else {
@@ -78,6 +81,10 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
                     Log.i("informação", respostaRetornada);
 
                     if(respostaRetornada.toString().contains("1")){
+
+                        banco.abrir();
+                        banco.insertTabelaPersistencia("1", "true");
+                        banco.fechar();
 
                         new Thread(new Runnable() {
 

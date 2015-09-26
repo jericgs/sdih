@@ -29,12 +29,15 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
     private AlertDialog alerta;
     public static final int REQUEST_CODE = 0;
     private String respostaRetornadaQRcode;
+    private DBAdapter banco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_menu);
         actionBarSetup();
+
+        banco = new DBAdapter(this);
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -121,9 +124,17 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         }
 
         if(id == R.id.item4_sair){
-            Intent telaLogin = new Intent(this, Login.class);
-            startActivity(telaLogin);
-            finish();
+            banco.abrir();
+
+            if(banco.deletePersistencia("1")){
+                Intent telaLogin = new Intent(this, Login.class);
+                startActivity(telaLogin);
+                finish();
+            }else {
+                ToastManager.show(this, "Erro ao deslogar.", ToastManager.ERROS);
+            }
+
+            banco.fechar();
         }
 
         return super.onOptionsItemSelected(item);

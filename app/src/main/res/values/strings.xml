@@ -27,7 +27,7 @@
     //tela_login
     <string name="caixaUsuario">Usuário</string>
     <string name="caixaSenha">Senha</string>
-    <string name="buttonEnter">Entra</string>
+    <string name="buttonEnter">Entrar</string>
 
     //tela buscar
     <string name="labelVaagasLocalizacao">Vagas Localizadas</string>

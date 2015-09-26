@@ -173,7 +173,7 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
                 editTextEstado.getText().toString().equals("") || editTextPais.getText().toString().equals("") ||
                 editTextLatitude.getText().toString().equals("") || editTextLongitude.getText().toString().equals("")) {
 
-                ToastManager.show(this, "preencha todos os campos", ToastManager.INFORMACOES);
+                ToastManager.show(this, "Preencha todos os campos", ToastManager.INFORMACOES);
 
             }else{
 
