@@ -93,8 +93,10 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
 
         if(v.getId() == R.id.botaoBuscar){
 
+             String nBuscado = nomeBuscado.getText().toString().replace(" ", "");
+
             ArrayList<NameValuePair> parametrosPostEnviarNomeBuscar = new ArrayList<>();
-            parametrosPostEnviarNomeBuscar.add(new BasicNameValuePair("logradouro", nomeBuscado.getText().toString()));
+            parametrosPostEnviarNomeBuscar.add(new BasicNameValuePair("logradouro", nBuscado));
 
             try {
 
