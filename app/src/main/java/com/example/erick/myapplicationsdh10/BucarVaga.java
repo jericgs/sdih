@@ -93,50 +93,58 @@ public class BucarVaga extends ActionBarActivity implements View.OnClickListener
 
         if(v.getId() == R.id.botaoBuscar){
 
-             String nBuscado = nomeBuscado.getText().toString().replace(" ", "");
+            if (nomeBuscado.getText().toString().equals("")) {
 
-            ArrayList<NameValuePair> parametrosPostEnviarNomeBuscar = new ArrayList<>();
-            parametrosPostEnviarNomeBuscar.add(new BasicNameValuePair("logradouro", nBuscado));
+                ToastManager.show(this, "Campo busca vazio.", ToastManager.INFORMACOES);
 
-            try {
+            }else{
 
-                respostaRetornadaNomeBuscado = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarNomeBuscar, parametrosPostEnviarNomeBuscar);
-                String respostaNomeBuscado = respostaRetornadaNomeBuscado.substring(3);
+                String nBuscado = nomeBuscado.getText().toString().replace(" ", "");
 
-                enderecosLista = new ArrayList<>();
+                ArrayList<NameValuePair> parametrosPostEnviarNomeBuscar = new ArrayList<>();
+                parametrosPostEnviarNomeBuscar.add(new BasicNameValuePair("logradouro", nBuscado));
 
-                if(respostaNomeBuscado.contains("~")){
+                try {
 
-                    String enderecos [];
-                    enderecos = respostaNomeBuscado.split("#");
+                    respostaRetornadaNomeBuscado = ConexaoHttpClient.execultaHttpPost(ConexaoHttpClient.enviarNomeBuscar, parametrosPostEnviarNomeBuscar);
+                    String respostaNomeBuscado = respostaRetornadaNomeBuscado.substring(3);
 
-                    for(int i = 0; i < enderecos.length; i++){
+                    enderecosLista = new ArrayList<>();
 
-                        Log.i("Retorno" + i + " : ", enderecos[i]);
+                    if(respostaNomeBuscado.contains("~")){
 
-                        if(enderecos[i].contains("~")){
-                            String endereco [] = enderecos[i].split("~");
+                        String enderecos [];
+                        enderecos = respostaNomeBuscado.split("#");
 
-                            for(int j = 0; j < endereco.length; j++) {
+                        for(int i = 0; i < enderecos.length; i++){
 
-                                Log.i("Retorno" + j + " : ", endereco[j]);
+                            Log.i("Retorno" + i + " : ", enderecos[i]);
+
+                            if(enderecos[i].contains("~")){
+                                String endereco [] = enderecos[i].split("~");
+
+                                for(int j = 0; j < endereco.length; j++) {
+
+                                    Log.i("Retorno" + j + " : ", endereco[j]);
+                                }
+
+                                Endereco endereco1 = new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]);
+                                enderecosLista.add(endereco1);
                             }
 
-                            Endereco endereco1 = new Endereco(endereco[0], endereco[1], endereco[2], endereco[3], endereco[4], endereco[5], endereco[6], endereco[7]);
-                            enderecosLista.add(endereco1);
                         }
 
+                        listaEnderecos.setAdapter(new ArrayAdapter<Endereco>(this, R.layout.fundo_list_view, enderecosLista));
+
+                    }else{
+                        ToastManager.show(this, "Não existe vagas nessa rua.", ToastManager.INFORMACOES);
                     }
 
-                    listaEnderecos.setAdapter(new ArrayAdapter<Endereco>(this, R.layout.fundo_list_view, enderecosLista));
-
-                }else{
-                    ToastManager.show(this, "Não existe vagas nessa rua.", ToastManager.INFORMACOES);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    ToastManager.show(this, "Erro na busca. verifique sua conexão.", ToastManager.ERROS);
                 }
 
-            }catch (Exception e){
-                e.printStackTrace();
-                ToastManager.show(this, "Erro na busca. verifique sua conexão.", ToastManager.ERROS);
             }
 
         }
