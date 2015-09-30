@@ -1,11 +1,15 @@
 package com.example.erick.myapplicationsdh10;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,6 +50,7 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        actionBarSetup();
 
         coordenadasChave =  this.getIntent().getStringArrayListExtra("informacoes");
 
@@ -57,6 +62,15 @@ public class Mapa extends ActionBarActivity  implements View.OnClickListener, On
         locationManager = (LocationManager) this.getApplicationContext().getSystemService(LOCATION_SERVICE);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void actionBarSetup() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            SpannableString s = new SpannableString("  SDIH");
+            s.setSpan(new TypefaceSpan(this, "Aero.ttf"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            android.support.v7.app.ActionBar ab = getSupportActionBar();
+            ab.setTitle(s);
+        }
+    }
 
     @Override
     public void onMapReady(GoogleMap map) {
