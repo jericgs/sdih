@@ -176,6 +176,7 @@ public class Menu extends ActionBarActivity implements View.OnClickListener{
         if(v.getId() == R.id.buttonNao){
             alerta.dismiss();
         }
+
     }
 
 

@@ -45,7 +45,7 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
         setContentView(R.layout.tela_add_vaga);
         actionBarSetup();
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled (true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         InformacoesDaVaga();
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -71,34 +71,55 @@ public class AdicionarVaga extends ActionBarActivity implements View.OnClickList
             editTextCidade.setText(geoLocalizacao.get(1).toString());
             editTextEstado.setText(geoLocalizacao.get(2).toString());
             editTextPais.setText(geoLocalizacao.get(3).toString());
+        }else{
+            if(geoLocalizacao.size()==3){
+                editTextCidade.setText(geoLocalizacao.get(0).toString());
+                editTextEstado.setText(geoLocalizacao.get(1).toString());
+                editTextPais.setText(geoLocalizacao.get(2).toString());
+
+            }else{
+                if(geoLocalizacao.size()==2){
+                    editTextEstado.setText(geoLocalizacao.get(0).toString());
+                    editTextPais.setText(geoLocalizacao.get(1).toString());
+                }
+            }
         }
-        else if(geoLocalizacao.size()==3){
-            editTextCidade.setText(geoLocalizacao.get(0).toString());
-            editTextEstado.setText(geoLocalizacao.get(1).toString());
-            editTextPais.setText(geoLocalizacao.get(2).toString());
-        }
+
     }
     public void InformacoesDaVaga(){
 
         List<Address> addressList;
-        Geocoder geocoder =  new Geocoder(this);
+        Geocoder geocoder =  new Geocoder(AdicionarVaga.this);
         Log.i("Latitude" + Mapa.latitude,"longitude" + Mapa.longitude);
 
         try {
             addressList = geocoder.getFromLocation(Mapa.latitude,Mapa.longitude,1);
             if(addressList!=null && addressList.size()>0){
-                if(addressList.get(0).getThoroughfare()!=null)
-                  geoLocalizacao.add(addressList.get(0).getThoroughfare());
-                if(addressList.get(0).getSubAdminArea()!=null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
-                    geoLocalizacao.add(addressList.get(0).getSubAdminArea());
+
+                if(addressList.get(0).getThoroughfare()!= null && addressList.get(0).getLocality()!=null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
+                    geoLocalizacao.add(addressList.get(0).getThoroughfare());
+                    geoLocalizacao.add(addressList.get(0).getLocality());
                     geoLocalizacao.add(addressList.get(0).getAdminArea());
                     geoLocalizacao.add(addressList.get(0).getCountryCode());
-                } else{
-                    ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
-                    finish();
+
+                }else{
+                    if(addressList.get(0).getLocality()!= null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
+                        geoLocalizacao.add(addressList.get(0).getLocality());
+                        geoLocalizacao.add(addressList.get(0).getAdminArea());
+                        geoLocalizacao.add(addressList.get(0).getCountryCode());
+
+                    }else{
+                        if(addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
+                            geoLocalizacao.add(addressList.get(0).getAdminArea());
+                            geoLocalizacao.add(addressList.get(0).getCountryCode());
+                        }else{
+                            ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
+                            finish();
+                        }
+                    }
                 }
             } else{
-                ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
+                ToastManager.show(this, "Não foi possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
                 finish();
             }
         } catch (IOException e) {

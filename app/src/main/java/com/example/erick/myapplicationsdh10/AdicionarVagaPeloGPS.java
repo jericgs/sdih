@@ -101,13 +101,21 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
             editTextCidade.setText(geoLocalizacao.get(1).toString());
             editTextEstado.setText(geoLocalizacao.get(2).toString());
             editTextPais.setText(geoLocalizacao.get(3).toString());
-        }
-        else if(geoLocalizacao.size()==3){
-            editTextCidade.setText(geoLocalizacao.get(0).toString());
-            editTextEstado.setText(geoLocalizacao.get(1).toString());
-            editTextPais.setText(geoLocalizacao.get(2).toString());
+        }else{
+            if(geoLocalizacao.size()==3){
+                editTextCidade.setText(geoLocalizacao.get(0).toString());
+                editTextEstado.setText(geoLocalizacao.get(1).toString());
+                editTextPais.setText(geoLocalizacao.get(2).toString());
+
+            }else{
+                if(geoLocalizacao.size()==2){
+                    editTextEstado.setText(geoLocalizacao.get(0).toString());
+                    editTextPais.setText(geoLocalizacao.get(1).toString());
+                }
+            }
         }
     }
+
     public void InformacoesDaVaga(){
 
         List<Address> addressList;
@@ -115,15 +123,28 @@ public class AdicionarVagaPeloGPS extends ActionBarActivity implements View.OnCl
         try {
             addressList = geocoder.getFromLocation(latitude,longitude,1);
             if(addressList!=null && addressList.size()>0){
-                if(addressList.get(0).getThoroughfare()!=null)
+
+                if(addressList.get(0).getThoroughfare()!= null && addressList.get(0).getLocality()!=null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
                     geoLocalizacao.add(addressList.get(0).getThoroughfare());
-                if(addressList.get(0).getSubAdminArea()!=null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
-                    geoLocalizacao.add(addressList.get(0).getSubAdminArea());
+                    geoLocalizacao.add(addressList.get(0).getLocality());
                     geoLocalizacao.add(addressList.get(0).getAdminArea());
                     geoLocalizacao.add(addressList.get(0).getCountryCode());
-                } else{
-                    ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
-                    finish();
+
+                }else{
+                    if(addressList.get(0).getLocality()!=null && addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
+                        geoLocalizacao.add(addressList.get(0).getLocality());
+                        geoLocalizacao.add(addressList.get(0).getAdminArea());
+                        geoLocalizacao.add(addressList.get(0).getCountryCode());
+
+                    }else{
+                        if(addressList.get(0).getAdminArea()!=null && addressList.get(0).getCountryCode()!=null){
+                            geoLocalizacao.add(addressList.get(0).getAdminArea());
+                            geoLocalizacao.add(addressList.get(0).getCountryCode());
+                        }else{
+                            ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);
+                            finish();
+                        }
+                    }
                 }
             } else{
                 ToastManager.show(this, "Não é possível adicionar uma vaga aqui", ToastManager.INFORMACOES);

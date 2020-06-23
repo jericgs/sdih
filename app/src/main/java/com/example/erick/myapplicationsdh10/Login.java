@@ -112,6 +112,8 @@ public class Login extends Activity implements View.OnClickListener, View.OnKeyL
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    ToastManager.show(this, "Sem conexão", ToastManager.INFORMACOES);
+                    pd.dismiss();
                 }
             }
         }
