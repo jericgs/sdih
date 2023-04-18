@@ -22,9 +22,7 @@
 
 ## Metodologia
 
-<p align="justify">O Scrum foi a metodologia utilizada no desenvolvimento desse projeto. É considerada uma metodologia ágil, pois os processos são divididos em ciclos, mais precisamente <i>sprints</i>, onde as tarefas são repartidas entre a equipe para serem executadas. Abaixo segue o link para documentação completa do projeto.</p>
-
-<p align="center" href="https://bityli.com/0mESp"><br/>https://bityli.com/0mESp</p>
+<p align="justify">O Scrum foi a metodologia utilizada no desenvolvimento desse projeto. É considerada uma metodologia ágil, pois os processos são divididos em ciclos, mais precisamente <i>sprints</i>, onde as tarefas são repartidas entre a equipe para serem executadas.
 
 ## Arquitetura
 
